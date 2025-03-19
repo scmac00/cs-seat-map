@@ -1,530 +1,611 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Event Seating Chart</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="app-container">
-        <header>
-            <h1>Venue Seating Chart</h1>
-        </header>
+      <header>
+        <h1>Venue Seating Chart</h1>
+      </header>
 
-        <main>
-            <div class="seating-container">
-                <div class="row-labels">
-                    <div class="row-label">E</div>
-                    <div class="row-label">D</div>
-                    <div class="row-label">C</div>
-                    <div class="row-label">B</div>
-                    <div class="row-label">A</div>
+      <main>
+        <div class="filters-container">
+          <select id="day-filter">
+            <option value="Day 1 - Friday">Day 1 - Friday</option>
+            <option value="Day 2 - Saturday">Day 2 - Saturday</option>
+            <option value="Day 3 - Sunday">Day 3 - Sunday</option>
+            <option value="Day 4 - Monday">Day 4 - Monday</option>
+            <option value="Day 5 - Tuesday">Day 5 - Tuesday</option>
+            <option value="Day 6 - Wednesday">Day 6 - Wednesday</option>
+            <option value="Day 7 - Thursday">Day 7 - Thursday</option>
+            <option value="Day 8 - Friday">Day 8 - Friday</option>
+            <option value="Day 9 - Saturday">Day 9 - Saturday</option>
+            <option value="Day 10 - Sunday">Day 10 - Sunday</option>
+          </select>
+
+          <div class="radio-toggle" id="event-type-filter">
+            <input
+              type="radio"
+              id="event-type-evening-show"
+              name="event-type"
+              value="Evening Show"
+              checked
+            />
+            <label for="event-type-evening-show">Evening Show</label>
+            <input
+              type="radio"
+              id="event-type-rodeo"
+              name="event-type"
+              value="Rodeo"
+            />
+            <label for="event-type-rodeo">Rodeo</label>
+          </div>
+        </div>
+        <div class="seating-container">
+          <div class="row-labels">
+            <div class="row-label">E</div>
+            <div class="row-label">D</div>
+            <div class="row-label">C</div>
+            <div class="row-label">B</div>
+            <div class="row-label">A</div>
+          </div>
+
+          <div class="venue-scroll-container">
+            <div class="venue-layout">
+              <!-- Left staircase -->
+              <div class="staircase"></div>
+
+              <!-- Section 1 seats -->
+              <div class="seat-section" data-section-id="section-1">
+                <!-- Row E (top row) -->
+                <div class="row row-e">
+                  <!-- Seats 30-49 -->
+                  <div class="seat" data-seat-id="E30">30</div>
+                  <div class="seat" data-seat-id="E31">31</div>
+                  <div class="seat" data-seat-id="E32">32</div>
+                  <div class="seat" data-seat-id="E33">33</div>
+                  <div class="seat" data-seat-id="E34">34</div>
+                  <div class="seat" data-seat-id="E35">35</div>
+                  <div class="seat" data-seat-id="E36">36</div>
+                  <div class="seat" data-seat-id="E37">37</div>
+                  <div class="seat" data-seat-id="E38">38</div>
+                  <div class="seat" data-seat-id="E39">39</div>
+                  <!-- Pillar 40-41 -->
+                  <div class="pillar pillar-span-2">PILLAR</div>
+                  <div class="seat" data-seat-id="E42">42</div>
+                  <div class="seat" data-seat-id="E43">43</div>
+                  <div class="seat" data-seat-id="E44">44</div>
+                  <div class="seat" data-seat-id="E45">45</div>
+                  <div class="seat" data-seat-id="E46">46</div>
+                  <div class="seat" data-seat-id="E47">47</div>
+                  <div class="seat" data-seat-id="E48">48</div>
+                  <div class="seat" data-seat-id="E49">49</div>
                 </div>
-                
-                    
-                <div class="venue-scroll-container">
-                    <div class="venue-layout">
-                        <!-- Left staircase -->
-                        <div class="staircase"></div>
-                        
-                        <!-- Section 1 seats -->
-                        <div class="seat-section">
-                            <!-- Row E (top row) -->
-                            <div class="row row-e">
-                                <!-- Seats 30-49 -->
-                                <div class="seat" data-seat-id="E30">30</div>
-                                <div class="seat" data-seat-id="E31">31</div>
-                                <div class="seat" data-seat-id="E32">32</div>
-                                <div class="seat" data-seat-id="E33">33</div>
-                                <div class="seat" data-seat-id="E34">34</div>
-                                <div class="seat" data-seat-id="E35">35</div>
-                                <div class="seat" data-seat-id="E36">36</div>
-                                <div class="seat" data-seat-id="E37">37</div>
-                                <div class="seat" data-seat-id="E38">38</div>
-                                <div class="seat" data-seat-id="E39">39</div>
-                                <!-- Pillar 40-41 -->
-                                <div class="pillar pillar-span-2">PILLAR</div>
-                                <div class="seat" data-seat-id="E42">42</div>
-                                <div class="seat" data-seat-id="E43">43</div>
-                                <div class="seat" data-seat-id="E44">44</div>
-                                <div class="seat" data-seat-id="E45">45</div>
-                                <div class="seat" data-seat-id="E46">46</div>
-                                <div class="seat" data-seat-id="E47">47</div>
-                                <div class="seat" data-seat-id="E48">48</div>
-                                <div class="seat" data-seat-id="E49">49</div>
-                            </div>
-                            
-                            <!-- Row D -->
-                            <div class="row row-d">
-                                <!-- Seats 30-49 -->
-                                <div class="seat" data-seat-id="D30">30</div>
-                                <div class="seat" data-seat-id="D31">31</div>
-                                <div class="seat" data-seat-id="D32">32</div>
-                                <div class="seat" data-seat-id="D33">33</div>
-                                <div class="seat" data-seat-id="D34">34</div>
-                                <div class="seat" data-seat-id="D35">35</div>
-                                <div class="seat" data-seat-id="D36">36</div>
-                                <div class="seat" data-seat-id="D37">37</div>
-                                <div class="seat" data-seat-id="D38">38</div>
-                                <div class="seat" data-seat-id="D39">39</div>
-                                <div class="seat" data-seat-id="D40">40</div>
-                                <div class="seat" data-seat-id="D41">41</div>
-                                <div class="seat" data-seat-id="D42">42</div>
-                                <div class="seat" data-seat-id="D43">43</div>
-                                <div class="seat" data-seat-id="D44">44</div>
-                                <div class="seat" data-seat-id="D45">45</div>
-                                <div class="seat" data-seat-id="D46">46</div>
-                                <div class="seat" data-seat-id="D47">47</div>
-                                <div class="seat" data-seat-id="D48">48</div>
-                                <div class="seat" data-seat-id="D49">49</div>
-                            </div>
-                            
-                            <!-- Row C -->
-                            <div class="row row-c">
-                                <!-- Seats 30-49 -->
-                                <div class="seat" data-seat-id="C30">30</div>
-                                <div class="seat" data-seat-id="C31">31</div>
-                                <div class="seat" data-seat-id="C32">32</div>
-                                <div class="seat" data-seat-id="C33">33</div>
-                                <div class="seat" data-seat-id="C34">34</div>
-                                <div class="seat" data-seat-id="C35">35</div>
-                                <div class="seat" data-seat-id="C36">36</div>
-                                <div class="seat" data-seat-id="C37">37</div>
-                                <div class="seat" data-seat-id="C38">38</div>
-                                <div class="seat" data-seat-id="C39">39</div>
-                                <div class="seat" data-seat-id="C40">40</div>
-                                <div class="seat" data-seat-id="C41">41</div>
-                                <div class="seat" data-seat-id="C42">42</div>
-                                <div class="seat" data-seat-id="C43">43</div>
-                                <div class="seat" data-seat-id="C44">44</div>
-                                <div class="seat" data-seat-id="C45">45</div>
-                                <div class="seat" data-seat-id="C46">46</div>
-                                <div class="seat" data-seat-id="C47">47</div>
-                                <div class="seat" data-seat-id="C48">48</div>
-                                <div class="seat" data-seat-id="C49">49</div>
-                            </div>
-                            
-                            <!-- Row B -->
-                            <div class="row row-b">
-                                <!-- Seats 30-49 -->
-                                <div class="seat" data-seat-id="B30">30</div>
-                                <div class="seat" data-seat-id="B31">31</div>
-                                <div class="seat" data-seat-id="B32">32</div>
-                                <div class="seat" data-seat-id="B33">33</div>
-                                <div class="seat" data-seat-id="B34">34</div>
-                                <div class="seat" data-seat-id="B35">35</div>
-                                <div class="seat" data-seat-id="B36">36</div>
-                                <div class="seat" data-seat-id="B37">37</div>
-                                <div class="seat" data-seat-id="B38">38</div>
-                                <div class="seat" data-seat-id="B39">39</div>
-                                <div class="seat" data-seat-id="B40">40</div>
-                                <div class="seat" data-seat-id="B41">41</div>
-                                <div class="seat" data-seat-id="B42">42</div>
-                                <div class="seat" data-seat-id="B43">43</div>
-                                <div class="seat" data-seat-id="B44">44</div>
-                                <div class="seat" data-seat-id="B45">45</div>
-                                <div class="seat" data-seat-id="B46">46</div>
-                                <div class="seat" data-seat-id="B47">47</div>
-                                <div class="seat" data-seat-id="B48">48</div>
-                                <div class="seat" data-seat-id="B49">49</div>
-                            </div>
-                            
-                            <!-- Row A (Bottom row) -->
-                            <div class="row row-a">
-                                <!-- Seats 30-49 -->
-                                <div class="seat" data-seat-id="A30">30</div>
-                                <div class="seat" data-seat-id="A31">31</div>
-                                <div class="seat" data-seat-id="A32">32</div>
-                                <div class="seat" data-seat-id="A33">33</div>
-                                <div class="seat" data-seat-id="A34">34</div>
-                                <div class="seat" data-seat-id="A35">35</div>
-                                <div class="seat" data-seat-id="A36">36</div>
-                                <div class="seat" data-seat-id="A37">37</div>
-                                <div class="seat" data-seat-id="A38">38</div>
-                                <div class="seat" data-seat-id="A39">39</div>
-                                <div class="seat" data-seat-id="A40">40</div>
-                                <div class="seat" data-seat-id="A41">41</div>
-                                <div class="seat" data-seat-id="A42">42</div>
-                                <div class="seat" data-seat-id="A43">43</div>
-                                <div class="seat" data-seat-id="A44">44</div>
-                                <div class="seat" data-seat-id="A45">45</div>
-                                <div class="seat" data-seat-id="A46">46</div>
-                                <div class="seat" data-seat-id="A47">47</div>
-                                <div class="seat" data-seat-id="A48">48</div>
-                                <div class="seat" data-seat-id="A49">49</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Staircase 1 -->
-                        <div class="staircase"></div>
-                        
-                        <!-- Section 2 seats -->
-                        <div class="seat-section">
-                            <!-- Row E (top row) -->
-                            <div class="row row-e">
-                                <!-- Seats 50-65 -->
-                                <div class="seat" data-seat-id="E50">50</div>
-                                <div class="seat" data-seat-id="E51">51</div>
-                                <div class="seat" data-seat-id="E52">52</div>
-                                <div class="seat" data-seat-id="E53">53</div>
-                                <div class="seat" data-seat-id="E54">54</div>
-                                <div class="seat" data-seat-id="E55">55</div>
-                                <!-- Pillar 56-57 -->
-                                <div class="pillar pillar-span-2">PILLAR</div>
-                                <div class="seat" data-seat-id="E58">58</div>
-                                <div class="seat" data-seat-id="E59">59</div>
-                                <div class="seat" data-seat-id="E60">60</div>
-                                <div class="seat" data-seat-id="E61">61</div>
-                                <div class="seat" data-seat-id="E62">62</div>
-                                <div class="seat" data-seat-id="E63">63</div>
-                                <div class="seat" data-seat-id="E64">64</div>
-                                <div class="seat" data-seat-id="E65">65</div>
-                            </div>
-                            
-                            <!-- Row D -->
-                            <div class="row row-d">
-                                <!-- Seats 50-65 -->
-                                <div class="seat" data-seat-id="D50">50</div>
-                                <div class="seat" data-seat-id="D51">51</div>
-                                <div class="seat" data-seat-id="D52">52</div>
-                                <div class="seat" data-seat-id="D53">53</div>
-                                <div class="seat" data-seat-id="D54">54</div>
-                                <div class="seat" data-seat-id="D55">55</div>
-                                <div class="seat" data-seat-id="D56">56</div>
-                                <div class="seat" data-seat-id="D57">57</div>
-                                <div class="seat" data-seat-id="D58">58</div>
-                                <div class="seat" data-seat-id="D59">59</div>
-                                <div class="seat" data-seat-id="D60">60</div>
-                                <div class="seat" data-seat-id="D61">61</div>
-                                <div class="seat" data-seat-id="D62">62</div>
-                                <div class="seat" data-seat-id="D63">63</div>
-                                <div class="seat" data-seat-id="D64">64</div>
-                                <div class="seat" data-seat-id="D65">65</div>
-                            </div>
-                            
-                            <!-- Row C -->
-                            <div class="row row-c">
-                                <!-- Seats 50-65 -->
-                                <div class="seat" data-seat-id="C50">50</div>
-                                <div class="seat" data-seat-id="C51">51</div>
-                                <div class="seat" data-seat-id="C52">52</div>
-                                <div class="seat" data-seat-id="C53">53</div>
-                                <div class="seat" data-seat-id="C54">54</div>
-                                <div class="seat" data-seat-id="C55">55</div>
-                                <div class="seat" data-seat-id="C56">56</div>
-                                <div class="seat" data-seat-id="C57">57</div>
-                                <div class="seat" data-seat-id="C58">58</div>
-                                <div class="seat" data-seat-id="C59">59</div>
-                                <div class="seat" data-seat-id="C60">60</div>
-                                <div class="seat" data-seat-id="C61">61</div>
-                                <div class="seat" data-seat-id="C62">62</div>
-                                <div class="seat" data-seat-id="C63">63</div>
-                                <div class="seat" data-seat-id="C64">64</div>
-                                <div class="seat" data-seat-id="C65">65</div>
-                            </div>
-                            
-                            <!-- Row B -->
-                            <div class="row row-b">
-                                <!-- Seats 50-65 -->
-                                <div class="seat" data-seat-id="B50">50</div>
-                                <div class="seat" data-seat-id="B51">51</div>
-                                <div class="seat" data-seat-id="B52">52</div>
-                                <div class="seat" data-seat-id="B53">53</div>
-                                <div class="seat" data-seat-id="B54">54</div>
-                                <div class="seat" data-seat-id="B55">55</div>
-                                <div class="seat" data-seat-id="B56">56</div>
-                                <div class="seat" data-seat-id="B57">57</div>
-                                <div class="seat" data-seat-id="B58">58</div>
-                                <div class="seat" data-seat-id="B59">59</div>
-                                <div class="seat" data-seat-id="B60">60</div>
-                                <div class="seat" data-seat-id="B61">61</div>
-                                <div class="seat" data-seat-id="B62">62</div>
-                                <div class="seat" data-seat-id="B63">63</div>
-                                <div class="seat" data-seat-id="B64">64</div>
-                                <div class="seat" data-seat-id="B65">65</div>
-                            </div>
-                            
-                            <!-- Row A (Bottom row) -->
-                            <div class="row row-a">
-                                <!-- Seats 50-65 -->
-                                <div class="seat" data-seat-id="A50">50</div>
-                                <div class="seat" data-seat-id="A51">51</div>
-                                <div class="seat" data-seat-id="A52">52</div>
-                                <div class="seat" data-seat-id="A53">53</div>
-                                <div class="seat" data-seat-id="A54">54</div>
-                                <div class="seat" data-seat-id="A55">55</div>
-                                <div class="seat" data-seat-id="A56">56</div>
-                                <div class="seat" data-seat-id="A57">57</div>
-                                <div class="seat" data-seat-id="A58">58</div>
-                                <div class="seat" data-seat-id="A59">59</div>
-                                <div class="seat" data-seat-id="A60">60</div>
-                                <div class="seat" data-seat-id="A61">61</div>
-                                <div class="seat" data-seat-id="A62">62</div>
-                                <div class="seat" data-seat-id="A63">63</div>
-                                <div class="seat" data-seat-id="A64">64</div>
-                                <div class="seat" data-seat-id="A65">65</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Staircase 2 -->
-                        <div class="staircase"></div>
-                        
-                        <!-- Section 3 seats -->
-                        <div class="seat-section">
-                            <!-- Row E (top row) -->
-                            <div class="row row-e">
-                                <!-- Seats 68-83 (skip 66-67) -->
-                                <div class="seat" data-seat-id="E68">68</div>
-                                <div class="seat" data-seat-id="E69">69</div>
-                                <div class="seat" data-seat-id="E70">70</div>
-                                <div class="seat" data-seat-id="E71">71</div>
-                                <div class="seat" data-seat-id="E72">72</div>
-                                <div class="seat" data-seat-id="E73">73</div>
-                                <!-- Pillar 74-75 -->
-                                <div class="pillar pillar-span-2">PILLAR</div>
-                                <div class="seat" data-seat-id="E76">76</div>
-                                <div class="seat" data-seat-id="E77">77</div>
-                                <div class="seat" data-seat-id="E78">78</div>
-                                <div class="seat" data-seat-id="E79">79</div>
-                                <div class="seat" data-seat-id="E80">80</div>
-                                <div class="seat" data-seat-id="E81">81</div>
-                                <div class="seat" data-seat-id="E82">82</div>
-                                <div class="seat" data-seat-id="E83">83</div>
-                            </div>
-                            
-                            <!-- Row D -->
-                            <div class="row row-d">
-                                <!-- Seats 68-83 (skip 66-67) -->
-                                <div class="seat" data-seat-id="D68">68</div>
-                                <div class="seat" data-seat-id="D69">69</div>
-                                <div class="seat" data-seat-id="D70">70</div>
-                                <div class="seat" data-seat-id="D71">71</div>
-                                <div class="seat" data-seat-id="D72">72</div>
-                                <div class="seat" data-seat-id="D73">73</div>
-                                <div class="seat" data-seat-id="D74">74</div>
-                                <div class="seat" data-seat-id="D75">75</div>
-                                <div class="seat" data-seat-id="D76">76</div>
-                                <div class="seat" data-seat-id="D77">77</div>
-                                <div class="seat" data-seat-id="D78">78</div>
-                                <div class="seat" data-seat-id="D79">79</div>
-                                <div class="seat" data-seat-id="D80">80</div>
-                                <div class="seat" data-seat-id="D81">81</div>
-                                <div class="seat" data-seat-id="D82">82</div>
-                                <div class="seat" data-seat-id="D83">83</div>
-                            </div>
-                            
-                            <!-- Row C -->
-                            <div class="row row-c">
-                                <!-- Seats 68-83 (skip 66-67) -->
-                                <div class="seat" data-seat-id="C68">68</div>
-                                <div class="seat" data-seat-id="C69">69</div>
-                                <div class="seat" data-seat-id="C70">70</div>
-                                <div class="seat" data-seat-id="C71">71</div>
-                                <div class="seat" data-seat-id="C72">72</div>
-                                <div class="seat" data-seat-id="C73">73</div>
-                                <div class="seat" data-seat-id="C74">74</div>
-                                <div class="seat" data-seat-id="C75">75</div>
-                                <div class="seat" data-seat-id="C76">76</div>
-                                <div class="seat" data-seat-id="C77">77</div>
-                                <div class="seat" data-seat-id="C78">78</div>
-                                <div class="seat" data-seat-id="C79">79</div>
-                                <div class="seat" data-seat-id="C80">80</div>
-                                <div class="seat" data-seat-id="C81">81</div>
-                                <div class="seat" data-seat-id="C82">82</div>
-                                <div class="seat" data-seat-id="C83">83</div>
-                            </div>
-                            
-                            <!-- Row B -->
-                            <div class="row row-b">
-                                <!-- Seats 68-83 (skip 66-67) -->
-                                <div class="seat" data-seat-id="B68">68</div>
-                                <div class="seat" data-seat-id="B69">69</div>
-                                <div class="seat" data-seat-id="B70">70</div>
-                                <div class="seat" data-seat-id="B71">71</div>
-                                <div class="seat" data-seat-id="B72">72</div>
-                                <div class="seat" data-seat-id="B73">73</div>
-                                <div class="seat" data-seat-id="B74">74</div>
-                                <div class="seat" data-seat-id="B75">75</div>
-                                <div class="seat" data-seat-id="B76">76</div>
-                                <div class="seat" data-seat-id="B77">77</div>
-                                <div class="seat" data-seat-id="B78">78</div>
-                                <div class="seat" data-seat-id="B79">79</div>
-                                <div class="seat" data-seat-id="B80">80</div>
-                                <div class="seat" data-seat-id="B81">81</div>
-                                <div class="seat" data-seat-id="B82">82</div>
-                                <div class="seat" data-seat-id="B83">83</div>
-                            </div>
-                            
-                            <!-- Row A (Bottom row) -->
-                            <div class="row row-a">
-                                <!-- Seats 68-83 (skip 66-67) -->
-                                <div class="seat" data-seat-id="A68">68</div>
-                                <div class="seat" data-seat-id="A69">69</div>
-                                <div class="seat" data-seat-id="A70">70</div>
-                                <div class="seat" data-seat-id="A71">71</div>
-                                <div class="seat" data-seat-id="A72">72</div>
-                                <div class="seat" data-seat-id="A73">73</div>
-                                <div class="seat" data-seat-id="A74">74</div>
-                                <div class="seat" data-seat-id="A75">75</div>
-                                <div class="seat" data-seat-id="A76">76</div>
-                                <div class="seat" data-seat-id="A77">77</div>
-                                <div class="seat" data-seat-id="A78">78</div>
-                                <div class="seat" data-seat-id="A79">79</div>
-                                <div class="seat" data-seat-id="A80">80</div>
-                                <div class="seat" data-seat-id="A81">81</div>
-                                <div class="seat" data-seat-id="A82">82</div>
-                                <div class="seat" data-seat-id="A83">83</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Staircase 3 -->
-                        <div class="staircase"></div>
-                        
-                        <!-- Section 4 seats -->
-                        <div class="seat-section">
-                            <!-- Row E (top row) -->
-                            <div class="row row-e">
-                                <!-- Seats 86-103 (skip 84-85) -->
-                                <div class="seat" data-seat-id="E86">86</div>
-                                <div class="seat" data-seat-id="E87">87</div>
-                                <div class="seat" data-seat-id="E88">88</div>
-                                <div class="seat" data-seat-id="E89">89</div>
-                                <div class="seat" data-seat-id="E90">90</div>
-                                <div class="seat" data-seat-id="E91">91</div>
-                                <!-- Pillar 92-95 -->
-                                <div class="pillar pillar-span-4">PILLAR</div>
-                                <div class="seat" data-seat-id="E96">96</div>
-                                <div class="seat" data-seat-id="E97">97</div>
-                                <div class="seat" data-seat-id="E98">98</div>
-                                <div class="seat" data-seat-id="E99">99</div>
-                                <div class="seat" data-seat-id="E100">100</div>
-                                <div class="seat" data-seat-id="E101">101</div>
-                                <div class="seat" data-seat-id="E102">102</div>
-                                <div class="seat" data-seat-id="E103">103</div>
-                            </div>
-                            
-                            <!-- Row D -->
-                            <div class="row row-d">
-                                <!-- Seats 86-103 (skip 84-85) -->
-                                <div class="seat" data-seat-id="D86">86</div>
-                                <div class="seat" data-seat-id="D87">87</div>
-                                <div class="seat" data-seat-id="D88">88</div>
-                                <div class="seat" data-seat-id="D89">89</div>
-                                <div class="seat" data-seat-id="D90">90</div>
-                                <div class="seat" data-seat-id="D91">91</div>
-                                <div class="seat" data-seat-id="D92">92</div>
-                                <div class="seat" data-seat-id="D93">93</div>
-                                <div class="seat" data-seat-id="D94">94</div>
-                                <div class="seat" data-seat-id="D95">95</div>
-                                <div class="seat" data-seat-id="D96">96</div>
-                                <div class="seat" data-seat-id="D97">97</div>
-                                <div class="seat" data-seat-id="D98">98</div>
-                                <div class="seat" data-seat-id="D99">99</div>
-                                <div class="seat" data-seat-id="D100">100</div>
-                                <div class="seat" data-seat-id="D101">101</div>
-                                <div class="seat" data-seat-id="D102">102</div>
-                                <div class="seat" data-seat-id="D103">103</div>
-                            </div>
-                            
-                            <!-- Row C -->
-                            <div class="row row-c">
-                                <!-- Seats 86-103 (skip 84-85) -->
-                                <div class="seat" data-seat-id="C86">86</div>
-                                <div class="seat" data-seat-id="C87">87</div>
-                                <div class="seat" data-seat-id="C88">88</div>
-                                <div class="seat" data-seat-id="C89">89</div>
-                                <div class="seat" data-seat-id="C90">90</div>
-                                <div class="seat" data-seat-id="C91">91</div>
-                                <div class="seat" data-seat-id="C92">92</div>
-                                <div class="seat" data-seat-id="C93">93</div>
-                                <div class="seat" data-seat-id="C94">94</div>
-                                <div class="seat" data-seat-id="C95">95</div>
-                                <div class="seat" data-seat-id="C96">96</div>
-                                <div class="seat" data-seat-id="C97">97</div>
-                                <div class="seat" data-seat-id="C98">98</div>
-                                <div class="seat" data-seat-id="C99">99</div>
-                                <div class="seat" data-seat-id="C100">100</div>
-                                <div class="seat" data-seat-id="C101">101</div>
-                                <div class="seat" data-seat-id="C102">102</div>
-                                <div class="seat" data-seat-id="C103">103</div>
-                            </div>
-                            
-                            <!-- Row B -->
-                            <div class="row row-b">
-                                <!-- Seats 86-103 (skip 84-85) -->
-                                <div class="seat" data-seat-id="B86">86</div>
-                                <div class="seat" data-seat-id="B87">87</div>
-                                <div class="seat" data-seat-id="B88">88</div>
-                                <div class="seat" data-seat-id="B89">89</div>
-                                <div class="seat" data-seat-id="B90">90</div>
-                                <div class="seat" data-seat-id="B91">91</div>
-                                <div class="seat" data-seat-id="B92">92</div>
-                                <div class="seat" data-seat-id="B93">93</div>
-                                <div class="seat" data-seat-id="B94">94</div>
-                                <div class="seat" data-seat-id="B95">95</div>
-                                <div class="seat" data-seat-id="B96">96</div>
-                                <div class="seat" data-seat-id="B97">97</div>
-                                <div class="seat" data-seat-id="B98">98</div>
-                                <div class="seat" data-seat-id="B99">99</div>
-                                <div class="seat" data-seat-id="B100">100</div>
-                                <div class="seat" data-seat-id="B101">101</div>
-                                <div class="seat" data-seat-id="B102">102</div>
-                                <div class="seat" data-seat-id="B103">103</div>
-                            </div>
-                            
-                            <!-- Row A (Bottom row) -->
-                            <div class="row row-a">
-                                <!-- Seats 86-103 (skip 84-85) -->
-                                <div class="seat" data-seat-id="A86">86</div>
-                                <div class="seat" data-seat-id="A87">87</div>
-                                <div class="seat" data-seat-id="A88">88</div>
-                                <div class="seat" data-seat-id="A89">89</div>
-                                <div class="seat" data-seat-id="A90">90</div>
-                                <div class="seat" data-seat-id="A91">91</div>
-                                <div class="seat" data-seat-id="A92">92</div>
-                                <div class="seat" data-seat-id="A93">93</div>
-                                <div class="seat" data-seat-id="A94">94</div>
-                                <div class="seat" data-seat-id="A95">95</div>
-                                <div class="seat" data-seat-id="A96">96</div>
-                                <div class="seat" data-seat-id="A97">97</div>
-                                <div class="seat" data-seat-id="A98">98</div>
-                                <div class="seat" data-seat-id="A99">99</div>
-                                <div class="seat" data-seat-id="A100">100</div>
-                                <div class="seat" data-seat-id="A101">101</div>
-                                <div class="seat" data-seat-id="A102">102</div>
-                                <div class="seat" data-seat-id="A103">103</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Right staircase -->
-                        <div class="staircase"></div>
-                    </div>
+
+                <!-- Row D -->
+                <div class="row row-d">
+                  <!-- Seats 30-49 -->
+                  <div class="seat" data-seat-id="D30">30</div>
+                  <div class="seat" data-seat-id="D31">31</div>
+                  <div class="seat" data-seat-id="D32">32</div>
+                  <div class="seat" data-seat-id="D33">33</div>
+                  <div class="seat" data-seat-id="D34">34</div>
+                  <div class="seat" data-seat-id="D35">35</div>
+                  <div class="seat" data-seat-id="D36">36</div>
+                  <div class="seat" data-seat-id="D37">37</div>
+                  <div class="seat" data-seat-id="D38">38</div>
+                  <div class="seat" data-seat-id="D39">39</div>
+                  <div class="seat" data-seat-id="D40">40</div>
+                  <div class="seat" data-seat-id="D41">41</div>
+                  <div class="seat" data-seat-id="D42">42</div>
+                  <div class="seat" data-seat-id="D43">43</div>
+                  <div class="seat" data-seat-id="D44">44</div>
+                  <div class="seat" data-seat-id="D45">45</div>
+                  <div class="seat" data-seat-id="D46">46</div>
+                  <div class="seat" data-seat-id="D47">47</div>
+                  <div class="seat" data-seat-id="D48">48</div>
+                  <div class="seat" data-seat-id="D49">49</div>
                 </div>
+
+                <!-- Row C -->
+                <div class="row row-c">
+                  <!-- Seats 30-49 -->
+                  <div class="seat" data-seat-id="C30">30</div>
+                  <div class="seat" data-seat-id="C31">31</div>
+                  <div class="seat" data-seat-id="C32">32</div>
+                  <div class="seat" data-seat-id="C33">33</div>
+                  <div class="seat" data-seat-id="C34">34</div>
+                  <div class="seat" data-seat-id="C35">35</div>
+                  <div class="seat" data-seat-id="C36">36</div>
+                  <div class="seat" data-seat-id="C37">37</div>
+                  <div class="seat" data-seat-id="C38">38</div>
+                  <div class="seat" data-seat-id="C39">39</div>
+                  <div class="seat" data-seat-id="C40">40</div>
+                  <div class="seat" data-seat-id="C41">41</div>
+                  <div class="seat" data-seat-id="C42">42</div>
+                  <div class="seat" data-seat-id="C43">43</div>
+                  <div class="seat" data-seat-id="C44">44</div>
+                  <div class="seat" data-seat-id="C45">45</div>
+                  <div class="seat" data-seat-id="C46">46</div>
+                  <div class="seat" data-seat-id="C47">47</div>
+                  <div class="seat" data-seat-id="C48">48</div>
+                  <div class="seat" data-seat-id="C49">49</div>
+                </div>
+
+                <!-- Row B -->
+                <div class="row row-b">
+                  <!-- Seats 30-49 -->
+                  <div class="seat" data-seat-id="B30">30</div>
+                  <div class="seat" data-seat-id="B31">31</div>
+                  <div class="seat" data-seat-id="B32">32</div>
+                  <div class="seat" data-seat-id="B33">33</div>
+                  <div class="seat" data-seat-id="B34">34</div>
+                  <div class="seat" data-seat-id="B35">35</div>
+                  <div class="seat" data-seat-id="B36">36</div>
+                  <div class="seat" data-seat-id="B37">37</div>
+                  <div class="seat" data-seat-id="B38">38</div>
+                  <div class="seat" data-seat-id="B39">39</div>
+                  <div class="seat" data-seat-id="B40">40</div>
+                  <div class="seat" data-seat-id="B41">41</div>
+                  <div class="seat" data-seat-id="B42">42</div>
+                  <div class="seat" data-seat-id="B43">43</div>
+                  <div class="seat" data-seat-id="B44">44</div>
+                  <div class="seat" data-seat-id="B45">45</div>
+                  <div class="seat" data-seat-id="B46">46</div>
+                  <div class="seat" data-seat-id="B47">47</div>
+                  <div class="seat" data-seat-id="B48">48</div>
+                  <div class="seat" data-seat-id="B49">49</div>
+                </div>
+
+                <!-- Row A (Bottom row) -->
+                <div class="row row-a">
+                  <!-- Seats 30-49 -->
+                  <div class="seat" data-seat-id="A30">30</div>
+                  <div class="seat" data-seat-id="A31">31</div>
+                  <div class="seat" data-seat-id="A32">32</div>
+                  <div class="seat" data-seat-id="A33">33</div>
+                  <div class="seat" data-seat-id="A34">34</div>
+                  <div class="seat" data-seat-id="A35">35</div>
+                  <div class="seat" data-seat-id="A36">36</div>
+                  <div class="seat" data-seat-id="A37">37</div>
+                  <div class="seat" data-seat-id="A38">38</div>
+                  <div class="seat" data-seat-id="A39">39</div>
+                  <div class="seat" data-seat-id="A40">40</div>
+                  <div class="seat" data-seat-id="A41">41</div>
+                  <div class="seat" data-seat-id="A42">42</div>
+                  <div class="seat" data-seat-id="A43">43</div>
+                  <div class="seat" data-seat-id="A44">44</div>
+                  <div class="seat" data-seat-id="A45">45</div>
+                  <div class="seat" data-seat-id="A46">46</div>
+                  <div class="seat" data-seat-id="A47">47</div>
+                  <div class="seat" data-seat-id="A48">48</div>
+                  <div class="seat" data-seat-id="A49">49</div>
+                </div>
+              </div>
+
+              <!-- Staircase 1 -->
+              <div class="staircase"></div>
+
+              <!-- Section 2 seats -->
+              <div class="seat-section" data-section-id="section-2">
+                <!-- Row E (top row) -->
+                <div class="row row-e">
+                  <!-- Seats 50-65 -->
+                  <div class="seat" data-seat-id="E50">50</div>
+                  <div class="seat" data-seat-id="E51">51</div>
+                  <div class="seat" data-seat-id="E52">52</div>
+                  <div class="seat" data-seat-id="E53">53</div>
+                  <div class="seat" data-seat-id="E54">54</div>
+                  <div class="seat" data-seat-id="E55">55</div>
+                  <!-- Pillar 56-57 -->
+                  <div class="pillar pillar-span-2">PILLAR</div>
+                  <div class="seat" data-seat-id="E58">58</div>
+                  <div class="seat" data-seat-id="E59">59</div>
+                  <div class="seat" data-seat-id="E60">60</div>
+                  <div class="seat" data-seat-id="E61">61</div>
+                  <div class="seat" data-seat-id="E62">62</div>
+                  <div class="seat" data-seat-id="E63">63</div>
+                  <div class="seat" data-seat-id="E64">64</div>
+                  <div class="seat" data-seat-id="E65">65</div>
+                </div>
+
+                <!-- Row D -->
+                <div class="row row-d">
+                  <!-- Seats 50-65 -->
+                  <div class="seat" data-seat-id="D50">50</div>
+                  <div class="seat" data-seat-id="D51">51</div>
+                  <div class="seat" data-seat-id="D52">52</div>
+                  <div class="seat" data-seat-id="D53">53</div>
+                  <div class="seat" data-seat-id="D54">54</div>
+                  <div class="seat" data-seat-id="D55">55</div>
+                  <div class="seat" data-seat-id="D56">56</div>
+                  <div class="seat" data-seat-id="D57">57</div>
+                  <div class="seat" data-seat-id="D58">58</div>
+                  <div class="seat" data-seat-id="D59">59</div>
+                  <div class="seat" data-seat-id="D60">60</div>
+                  <div class="seat" data-seat-id="D61">61</div>
+                  <div class="seat" data-seat-id="D62">62</div>
+                  <div class="seat" data-seat-id="D63">63</div>
+                  <div class="seat" data-seat-id="D64">64</div>
+                  <div class="seat" data-seat-id="D65">65</div>
+                </div>
+
+                <!-- Row C -->
+                <div class="row row-c">
+                  <!-- Seats 50-65 -->
+                  <div class="seat" data-seat-id="C50">50</div>
+                  <div class="seat" data-seat-id="C51">51</div>
+                  <div class="seat" data-seat-id="C52">52</div>
+                  <div class="seat" data-seat-id="C53">53</div>
+                  <div class="seat" data-seat-id="C54">54</div>
+                  <div class="seat" data-seat-id="C55">55</div>
+                  <div class="seat" data-seat-id="C56">56</div>
+                  <div class="seat" data-seat-id="C57">57</div>
+                  <div class="seat" data-seat-id="C58">58</div>
+                  <div class="seat" data-seat-id="C59">59</div>
+                  <div class="seat" data-seat-id="C60">60</div>
+                  <div class="seat" data-seat-id="C61">61</div>
+                  <div class="seat" data-seat-id="C62">62</div>
+                  <div class="seat" data-seat-id="C63">63</div>
+                  <div class="seat" data-seat-id="C64">64</div>
+                  <div class="seat" data-seat-id="C65">65</div>
+                </div>
+
+                <!-- Row B -->
+                <div class="row row-b">
+                  <!-- Seats 50-65 -->
+                  <div class="seat" data-seat-id="B50">50</div>
+                  <div class="seat" data-seat-id="B51">51</div>
+                  <div class="seat" data-seat-id="B52">52</div>
+                  <div class="seat" data-seat-id="B53">53</div>
+                  <div class="seat" data-seat-id="B54">54</div>
+                  <div class="seat" data-seat-id="B55">55</div>
+                  <div class="seat" data-seat-id="B56">56</div>
+                  <div class="seat" data-seat-id="B57">57</div>
+                  <div class="seat" data-seat-id="B58">58</div>
+                  <div class="seat" data-seat-id="B59">59</div>
+                  <div class="seat" data-seat-id="B60">60</div>
+                  <div class="seat" data-seat-id="B61">61</div>
+                  <div class="seat" data-seat-id="B62">62</div>
+                  <div class="seat" data-seat-id="B63">63</div>
+                  <div class="seat" data-seat-id="B64">64</div>
+                  <div class="seat" data-seat-id="B65">65</div>
+                </div>
+
+                <!-- Row A (Bottom row) -->
+                <div class="row row-a">
+                  <!-- Seats 50-65 -->
+                  <div class="seat" data-seat-id="A50">50</div>
+                  <div class="seat" data-seat-id="A51">51</div>
+                  <div class="seat" data-seat-id="A52">52</div>
+                  <div class="seat" data-seat-id="A53">53</div>
+                  <div class="seat" data-seat-id="A54">54</div>
+                  <div class="seat" data-seat-id="A55">55</div>
+                  <div class="seat" data-seat-id="A56">56</div>
+                  <div class="seat" data-seat-id="A57">57</div>
+                  <div class="seat" data-seat-id="A58">58</div>
+                  <div class="seat" data-seat-id="A59">59</div>
+                  <div class="seat" data-seat-id="A60">60</div>
+                  <div class="seat" data-seat-id="A61">61</div>
+                  <div class="seat" data-seat-id="A62">62</div>
+                  <div class="seat" data-seat-id="A63">63</div>
+                  <div class="seat" data-seat-id="A64">64</div>
+                  <div class="seat" data-seat-id="A65">65</div>
+                </div>
+              </div>
+
+              <!-- Staircase 2 -->
+              <div class="staircase"></div>
+
+              <!-- Section 3 seats -->
+              <div class="seat-section" data-section-id="section-3">
+                <!-- Row E (top row) -->
+                <div class="row row-e">
+                  <!-- Seats 68-83 (skip 66-67) -->
+                  <div class="seat" data-seat-id="E68">68</div>
+                  <div class="seat" data-seat-id="E69">69</div>
+                  <div class="seat" data-seat-id="E70">70</div>
+                  <div class="seat" data-seat-id="E71">71</div>
+                  <div class="seat" data-seat-id="E72">72</div>
+                  <div class="seat" data-seat-id="E73">73</div>
+                  <!-- Pillar 74-75 -->
+                  <div class="pillar pillar-span-2">PILLAR</div>
+                  <div class="seat" data-seat-id="E76">76</div>
+                  <div class="seat" data-seat-id="E77">77</div>
+                  <div class="seat" data-seat-id="E78">78</div>
+                  <div class="seat" data-seat-id="E79">79</div>
+                  <div class="seat" data-seat-id="E80">80</div>
+                  <div class="seat" data-seat-id="E81">81</div>
+                  <div class="seat" data-seat-id="E82">82</div>
+                  <div class="seat" data-seat-id="E83">83</div>
+                </div>
+
+                <!-- Row D -->
+                <div class="row row-d">
+                  <!-- Seats 68-83 (skip 66-67) -->
+                  <div class="seat" data-seat-id="D68">68</div>
+                  <div class="seat" data-seat-id="D69">69</div>
+                  <div class="seat" data-seat-id="D70">70</div>
+                  <div class="seat" data-seat-id="D71">71</div>
+                  <div class="seat" data-seat-id="D72">72</div>
+                  <div class="seat" data-seat-id="D73">73</div>
+                  <div class="seat" data-seat-id="D74">74</div>
+                  <div class="seat" data-seat-id="D75">75</div>
+                  <div class="seat" data-seat-id="D76">76</div>
+                  <div class="seat" data-seat-id="D77">77</div>
+                  <div class="seat" data-seat-id="D78">78</div>
+                  <div class="seat" data-seat-id="D79">79</div>
+                  <div class="seat" data-seat-id="D80">80</div>
+                  <div class="seat" data-seat-id="D81">81</div>
+                  <div class="seat" data-seat-id="D82">82</div>
+                  <div class="seat" data-seat-id="D83">83</div>
+                </div>
+
+                <!-- Row C -->
+                <div class="row row-c">
+                  <!-- Seats 68-83 (skip 66-67) -->
+                  <div class="seat" data-seat-id="C68">68</div>
+                  <div class="seat" data-seat-id="C69">69</div>
+                  <div class="seat" data-seat-id="C70">70</div>
+                  <div class="seat" data-seat-id="C71">71</div>
+                  <div class="seat" data-seat-id="C72">72</div>
+                  <div class="seat" data-seat-id="C73">73</div>
+                  <div class="seat" data-seat-id="C74">74</div>
+                  <div class="seat" data-seat-id="C75">75</div>
+                  <div class="seat" data-seat-id="C76">76</div>
+                  <div class="seat" data-seat-id="C77">77</div>
+                  <div class="seat" data-seat-id="C78">78</div>
+                  <div class="seat" data-seat-id="C79">79</div>
+                  <div class="seat" data-seat-id="C80">80</div>
+                  <div class="seat" data-seat-id="C81">81</div>
+                  <div class="seat" data-seat-id="C82">82</div>
+                  <div class="seat" data-seat-id="C83">83</div>
+                </div>
+
+                <!-- Row B -->
+                <div class="row row-b">
+                  <!-- Seats 68-83 (skip 66-67) -->
+                  <div class="seat" data-seat-id="B68">68</div>
+                  <div class="seat" data-seat-id="B69">69</div>
+                  <div class="seat" data-seat-id="B70">70</div>
+                  <div class="seat" data-seat-id="B71">71</div>
+                  <div class="seat" data-seat-id="B72">72</div>
+                  <div class="seat" data-seat-id="B73">73</div>
+                  <div class="seat" data-seat-id="B74">74</div>
+                  <div class="seat" data-seat-id="B75">75</div>
+                  <div class="seat" data-seat-id="B76">76</div>
+                  <div class="seat" data-seat-id="B77">77</div>
+                  <div class="seat" data-seat-id="B78">78</div>
+                  <div class="seat" data-seat-id="B79">79</div>
+                  <div class="seat" data-seat-id="B80">80</div>
+                  <div class="seat" data-seat-id="B81">81</div>
+                  <div class="seat" data-seat-id="B82">82</div>
+                  <div class="seat" data-seat-id="B83">83</div>
+                </div>
+
+                <!-- Row A (Bottom row) -->
+                <div class="row row-a">
+                  <!-- Seats 68-83 (skip 66-67) -->
+                  <div class="seat" data-seat-id="A68">68</div>
+                  <div class="seat" data-seat-id="A69">69</div>
+                  <div class="seat" data-seat-id="A70">70</div>
+                  <div class="seat" data-seat-id="A71">71</div>
+                  <div class="seat" data-seat-id="A72">72</div>
+                  <div class="seat" data-seat-id="A73">73</div>
+                  <div class="seat" data-seat-id="A74">74</div>
+                  <div class="seat" data-seat-id="A75">75</div>
+                  <div class="seat" data-seat-id="A76">76</div>
+                  <div class="seat" data-seat-id="A77">77</div>
+                  <div class="seat" data-seat-id="A78">78</div>
+                  <div class="seat" data-seat-id="A79">79</div>
+                  <div class="seat" data-seat-id="A80">80</div>
+                  <div class="seat" data-seat-id="A81">81</div>
+                  <div class="seat" data-seat-id="A82">82</div>
+                  <div class="seat" data-seat-id="A83">83</div>
+                </div>
+              </div>
+
+              <!-- Staircase 3 -->
+              <div class="staircase"></div>
+
+              <!-- Section 4 seats -->
+              <div class="seat-section" data-section-id="section-4">
+                <!-- Row E (top row) -->
+                <div class="row row-e">
+                  <!-- Seats 86-103 (skip 84-85) -->
+                  <div class="seat" data-seat-id="E86">86</div>
+                  <div class="seat" data-seat-id="E87">87</div>
+                  <div class="seat" data-seat-id="E88">88</div>
+                  <div class="seat" data-seat-id="E89">89</div>
+                  <div class="seat" data-seat-id="E90">90</div>
+                  <div class="seat" data-seat-id="E91">91</div>
+                  <!-- Pillar 92-95 -->
+                  <div class="pillar pillar-span-4">PILLAR</div>
+                  <div class="seat" data-seat-id="E96">96</div>
+                  <div class="seat" data-seat-id="E97">97</div>
+                  <div class="seat" data-seat-id="E98">98</div>
+                  <div class="seat" data-seat-id="E99">99</div>
+                  <div class="seat" data-seat-id="E100">100</div>
+                  <div class="seat" data-seat-id="E101">101</div>
+                  <div class="seat" data-seat-id="E102">102</div>
+                  <div class="seat" data-seat-id="E103">103</div>
+                </div>
+
+                <!-- Row D -->
+                <div class="row row-d">
+                  <!-- Seats 86-103 (skip 84-85) -->
+                  <div class="seat" data-seat-id="D86">86</div>
+                  <div class="seat" data-seat-id="D87">87</div>
+                  <div class="seat" data-seat-id="D88">88</div>
+                  <div class="seat" data-seat-id="D89">89</div>
+                  <div class="seat" data-seat-id="D90">90</div>
+                  <div class="seat" data-seat-id="D91">91</div>
+                  <div class="seat" data-seat-id="D92">92</div>
+                  <div class="seat" data-seat-id="D93">93</div>
+                  <div class="seat" data-seat-id="D94">94</div>
+                  <div class="seat" data-seat-id="D95">95</div>
+                  <div class="seat" data-seat-id="D96">96</div>
+                  <div class="seat" data-seat-id="D97">97</div>
+                  <div class="seat" data-seat-id="D98">98</div>
+                  <div class="seat" data-seat-id="D99">99</div>
+                  <div class="seat" data-seat-id="D100">100</div>
+                  <div class="seat" data-seat-id="D101">101</div>
+                  <div class="seat" data-seat-id="D102">102</div>
+                  <div class="seat" data-seat-id="D103">103</div>
+                </div>
+
+                <!-- Row C -->
+                <div class="row row-c">
+                  <!-- Seats 86-103 (skip 84-85) -->
+                  <div class="seat" data-seat-id="C86">86</div>
+                  <div class="seat" data-seat-id="C87">87</div>
+                  <div class="seat" data-seat-id="C88">88</div>
+                  <div class="seat" data-seat-id="C89">89</div>
+                  <div class="seat" data-seat-id="C90">90</div>
+                  <div class="seat" data-seat-id="C91">91</div>
+                  <div class="seat" data-seat-id="C92">92</div>
+                  <div class="seat" data-seat-id="C93">93</div>
+                  <div class="seat" data-seat-id="C94">94</div>
+                  <div class="seat" data-seat-id="C95">95</div>
+                  <div class="seat" data-seat-id="C96">96</div>
+                  <div class="seat" data-seat-id="C97">97</div>
+                  <div class="seat" data-seat-id="C98">98</div>
+                  <div class="seat" data-seat-id="C99">99</div>
+                  <div class="seat" data-seat-id="C100">100</div>
+                  <div class="seat" data-seat-id="C101">101</div>
+                  <div class="seat" data-seat-id="C102">102</div>
+                  <div class="seat" data-seat-id="C103">103</div>
+                </div>
+
+                <!-- Row B -->
+                <div class="row row-b">
+                  <!-- Seats 86-103 (skip 84-85) -->
+                  <div class="seat" data-seat-id="B86">86</div>
+                  <div class="seat" data-seat-id="B87">87</div>
+                  <div class="seat" data-seat-id="B88">88</div>
+                  <div class="seat" data-seat-id="B89">89</div>
+                  <div class="seat" data-seat-id="B90">90</div>
+                  <div class="seat" data-seat-id="B91">91</div>
+                  <div class="seat" data-seat-id="B92">92</div>
+                  <div class="seat" data-seat-id="B93">93</div>
+                  <div class="seat" data-seat-id="B94">94</div>
+                  <div class="seat" data-seat-id="B95">95</div>
+                  <div class="seat" data-seat-id="B96">96</div>
+                  <div class="seat" data-seat-id="B97">97</div>
+                  <div class="seat" data-seat-id="B98">98</div>
+                  <div class="seat" data-seat-id="B99">99</div>
+                  <div class="seat" data-seat-id="B100">100</div>
+                  <div class="seat" data-seat-id="B101">101</div>
+                  <div class="seat" data-seat-id="B102">102</div>
+                  <div class="seat" data-seat-id="B103">103</div>
+                </div>
+
+                <!-- Row A (Bottom row) -->
+                <div class="row row-a">
+                  <!-- Seats 86-103 (skip 84-85) -->
+                  <div class="seat" data-seat-id="A86">86</div>
+                  <div class="seat" data-seat-id="A87">87</div>
+                  <div class="seat" data-seat-id="A88">88</div>
+                  <div class="seat" data-seat-id="A89">89</div>
+                  <div class="seat" data-seat-id="A90">90</div>
+                  <div class="seat" data-seat-id="A91">91</div>
+                  <div class="seat" data-seat-id="A92">92</div>
+                  <div class="seat" data-seat-id="A93">93</div>
+                  <div class="seat" data-seat-id="A94">94</div>
+                  <div class="seat" data-seat-id="A95">95</div>
+                  <div class="seat" data-seat-id="A96">96</div>
+                  <div class="seat" data-seat-id="A97">97</div>
+                  <div class="seat" data-seat-id="A98">98</div>
+                  <div class="seat" data-seat-id="A99">99</div>
+                  <div class="seat" data-seat-id="A100">100</div>
+                  <div class="seat" data-seat-id="A101">101</div>
+                  <div class="seat" data-seat-id="A102">102</div>
+                  <div class="seat" data-seat-id="A103">103</div>
+                </div>
+              </div>
+
+              <!-- Right staircase -->
+              <div class="staircase"></div>
             </div>
+          </div>
+        </div>
 
-            <div class="legend">
-                <div class="legend-item">
-                    <div class="legend-color available"></div>
-                    <span>Available</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color booked"></div>
-                    <span>Booked</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color pillar"></div>
-                    <span>Pillar</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color staircase"></div>
-                    <span>Staircase</span>
-                </div>
-            </div>
-        </main>
+        <!-- Legend for the seating chart -->
+        <div class="legend">
+          <div class="legend-item">
+            <div class="legend-color available"></div>
+            <span>Available</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color booked"></div>
+            <span>Booked Seats</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color pillar"></div>
+            <span>Pillar</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color staircase"></div>
+            <span>Staircase</span>
+          </div>
+        </div>
 
+        <div class="salesforce-info">
+          <h3>Salesforce Data Format</h3>
+          <p>
+            This seating map integrates with Salesforce using the following data
+            structure:
+          </p>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Description</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Id</td>
+                <td>Salesforce Record ID</td>
+                <td>00kAs00000023HFIAQ</td>
+              </tr>
+              <tr>
+                <td>Opportunity_Account_Name</td>
+                <td>Account name for the booking</td>
+                <td>Test Premium Seating</td>
+              </tr>
+              <tr>
+                <td>PricebookEntry.Product2.Row</td>
+                <td>Row letter</td>
+                <td>A</td>
+              </tr>
+              <tr>
+                <td>PricebookEntry.Product2.Seat_Number</td>
+                <td>Seat number in the row</td>
+                <td>32.0</td>
+              </tr>
+              <tr>
+                <td>PricebookEntry.Product2.Day_of_Stampede</td>
+                <td>Day of the event</td>
+                <td>Day 1 - Friday</td>
+              </tr>
+              <tr>
+                <td>PricebookEntry.Product2.Event_Type</td>
+                <td>Type of event</td>
+                <td>Rodeo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
     </div>
+
     <script src="data.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
