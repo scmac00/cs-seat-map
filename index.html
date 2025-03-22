@@ -30,19 +30,19 @@
           <div class="radio-toggle" id="event-type-filter">
             <input
               type="radio"
-              id="event-type-evening-show"
-              name="event-type"
-              value="Evening Show"
-              checked
-            />
-            <label for="event-type-evening-show">Evening Show</label>
-            <input
-              type="radio"
               id="event-type-rodeo"
               name="event-type"
               value="Rodeo"
+              checked
             />
             <label for="event-type-rodeo">Rodeo</label>
+            <input
+              type="radio"
+              id="event-type-evening-show"
+              name="event-type"
+              value="Evening Show"
+            />
+            <label for="event-type-evening-show">Evening Show</label>
           </div>
         </div>
         <div class="seating-container">
@@ -552,55 +552,6 @@
             <div class="legend-color staircase"></div>
             <span>Staircase</span>
           </div>
-        </div>
-
-        <div class="salesforce-info">
-          <h3>Salesforce Data Format</h3>
-          <p>
-            This seating map integrates with Salesforce using the following data
-            structure:
-          </p>
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Field</th>
-                <th>Description</th>
-                <th>Example</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Id</td>
-                <td>Salesforce Record ID</td>
-                <td>00kAs00000023HFIAQ</td>
-              </tr>
-              <tr>
-                <td>Opportunity_Account_Name</td>
-                <td>Account name for the booking</td>
-                <td>Test Premium Seating</td>
-              </tr>
-              <tr>
-                <td>PricebookEntry.Product2.Row</td>
-                <td>Row letter</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>PricebookEntry.Product2.Seat_Number</td>
-                <td>Seat number in the row</td>
-                <td>32.0</td>
-              </tr>
-              <tr>
-                <td>PricebookEntry.Product2.Day_of_Stampede</td>
-                <td>Day of the event</td>
-                <td>Day 1 - Friday</td>
-              </tr>
-              <tr>
-                <td>PricebookEntry.Product2.Event_Type</td>
-                <td>Type of event</td>
-                <td>Rodeo</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </main>
     </div>

@@ -20,10 +20,33 @@
   /* Color variables for booked seats */
   --color-seat-booked-bg: #ffccbc;
   --color-seat-booked-border: #ff8a65;
+  --color-seat-booked-hover: #ffab91;
+
+  /* Additional color variables */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-loading-bg: rgba(0, 0, 0, 0.7);
+  --color-tooltip-bg: rgba(0, 0, 0, 0.8);
+
+  /* UI Colors */
+  --color-ui-bg-light: hsl(240, 5%, 96%);
+  --color-ui-border-light: hsl(240, 6%, 90%);
+  --color-ui-text: hsl(240, 4%, 46%);
+  --color-ui-text-dark: hsl(240, 3%, 6%);
+  --color-ui-text-hover: hsl(240, 5%, 20%);
+  --color-ui-border-focus: hsl(240, 5%, 65%);
+  --color-ui-border-hover: hsl(240, 5%, 80%);
+  --color-ui-focus-shadow: hsla(240, 5%, 84%, 0.35);
 
   /* Spacing variables */
   --spacing-base: 20px;
   --spacing-header-bottom: 30px;
+  --spacing-xs: 2px;
+  --spacing-sm: 5px;
+  --spacing-md: 8px;
+  --spacing-lg: 10px;
+  --spacing-xl: 15px;
+  --spacing-xxl: 20px;
   --gap-small: 2px;
   --gap-medium: 5px;
   --gap-large: 10px;
@@ -33,15 +56,31 @@
   --seat-size: 30px;
   --max-container-width: 1800px;
   --staircase-width: 60px;
+  --legend-item-size: 20px;
+  --detail-label-width: 120px;
 
   /* Border and radius */
-  --border-radius: 4px;
+  --border-radius-xs: 3px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+  --border-radius-lg: 8px;
+  --border-radius: var(--border-radius-sm);
+  --border-width-sm: 1px;
+  --border-width-md: 2px;
 
   /* Box shadow */
   --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --box-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --box-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   /* Typography */
-  --font-size-small: 0.75rem;
+  --font-size-xs: 0.7rem;
+  --font-size-sm: 0.75rem;
+  --font-size-md: 0.9rem;
+  --font-size-lg: 1.1rem;
+  --font-size-px-xs: 10px;
+  --font-size-px-sm: 12px;
+  --font-size-px-md: 14px;
   --line-height: 1.6;
 }
 
@@ -80,8 +119,8 @@ header h1 {
 .header-description {
   text-align: center;
   color: var(--color-header);
-  margin-bottom: 10px;
-  font-size: 1.1rem;
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-lg);
 }
 
 /* Main content area */
@@ -114,16 +153,12 @@ main {
   margin: 0 auto;
 }
 
-/* Sticky row labels container */
+/* Row labels: arrange 5 rows (E, D, C, B, A) in a grid */
 .row-labels {
   position: absolute;
   left: 0;
   top: 0;
   z-index: 30;
-}
-
-/* Row labels: arrange 5 rows (E, D, C, B, A) in a grid */
-.row-labels {
   display: grid;
   grid-template-rows: repeat(5, var(--seat-size));
   gap: var(--gap-medium);
@@ -132,7 +167,7 @@ main {
 .row-label {
   height: var(--seat-size);
   width: var(--seat-size);
-  display: flex; /* center content */
+  display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
@@ -178,16 +213,16 @@ main {
 .seat {
   height: var(--seat-size);
   width: var(--seat-size);
-  display: flex; /* center text */
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-sm);
   background-color: var(--color-seat-bg);
-  border: 1px solid var(--color-seat-border);
+  border: var(--border-width-sm) solid var(--color-seat-border);
   border-radius: var(--border-radius);
   position: relative;
   z-index: 1;
-  cursor: default; /* Default cursor for all seats */
+  cursor: default;
 }
 
 /* Only apply hover effect and pointer cursor to sold seats and connected seats */
@@ -196,14 +231,15 @@ main {
   cursor: pointer;
 }
 
-.seat.sold:hover {
-  background-color: #ffab91;
+.seat.sold:hover,
+.connected-seats:hover {
+  background-color: var(--color-seat-booked-hover);
 }
 
 /* Group booking styling - Legacy support */
 .group-booking {
   background-color: var(--color-seat-booked-bg);
-  border: 2px solid var(--color-seat-booked-border);
+  border: var(--border-width-md) solid var(--color-seat-booked-border);
   border-radius: var(--border-radius);
   display: flex;
   justify-content: center;
@@ -212,12 +248,13 @@ main {
   z-index: 20;
 }
 
-.group-name {
+.group-name,
+.connected-seats .account-name {
   color: var(--color-text);
-  font-size: 0.7rem;
+  font-size: var(--font-size-xs);
   font-weight: bold;
-  padding: 2px 4px;
-  border-radius: 3px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-xs);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -227,55 +264,14 @@ main {
 /* Connected seats styling */
 .connected-seats {
   background-color: var(--color-seat-booked-bg);
-  border: 2px solid var(--color-seat-booked-border);
+  border: var(--border-width-md) solid var(--color-seat-booked-border);
   border-radius: var(--border-radius);
   display: flex;
   justify-content: center;
   align-items: center;
   height: var(--seat-size);
-  cursor: pointer;
   position: relative;
   z-index: 10;
-}
-
-.connected-seats:hover {
-  background-color: #ffab91;
-}
-
-.connected-seats .account-name {
-  color: var(--color-text);
-  font-size: 0.7rem;
-  font-weight: bold;
-  padding: 2px 4px;
-  border-radius: 3px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 95%;
-}
-
-/* Pattern overlay for connected seats */
-.connected-seats::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.15) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0.15) 75%,
-    transparent 75%,
-    transparent
-  );
-  background-size: 10px 10px;
-  pointer-events: none;
-  border-radius: var(--border-radius);
-  opacity: 0.5;
 }
 
 /* Pillar styling */
@@ -286,11 +282,11 @@ main {
   justify-content: center;
   background-color: var(--color-pillar-bg);
   color: var(--color-pillar-text);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-sm);
   border-radius: var(--border-radius);
-  border: 1px solid var(--color-pillar-border);
+  border: var(--border-width-sm) solid var(--color-pillar-border);
   letter-spacing: 0.1em;
-  font-size: 10px;
+  font-size: var(--font-size-px-xs);
 }
 
 .pillar-span-2 {
@@ -310,60 +306,40 @@ main {
   margin-top: var(--spacing-header-bottom);
   padding: calc(var(--spacing-base) * 0.75);
   background-color: var(--color-legend-bg);
-  border-radius: 6px;
+  border-radius: var(--border-radius-md);
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-md);
 }
 
 .legend-color {
-  width: 20px;
-  height: 20px;
-  border-radius: 3px;
+  width: var(--legend-item-size);
+  height: var(--legend-item-size);
+  border-radius: var(--border-radius-xs);
 }
 
 .legend-color.available {
   background-color: var(--color-seat-bg);
-  border: 1px solid var(--color-seat-border);
+  border: var(--border-width-sm) solid var(--color-seat-border);
 }
 
 .legend-color.booked {
   background-color: var(--color-seat-booked-bg);
-  border: 1px solid var(--color-seat-booked-border);
+  border: var(--border-width-sm) solid var(--color-seat-booked-border);
 }
 
 .legend-color.connected-seats {
   background-color: var(--color-seat-booked-bg);
-  border: 2px solid var(--color-seat-booked-border);
+  border: var(--border-width-md) solid var(--color-seat-booked-border);
   position: relative;
-}
-
-.legend-color.connected-seats::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.15) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0.15) 75%,
-    transparent 75%,
-    transparent
-  );
-  background-size: 10px 10px;
 }
 
 .legend-color.pillar {
   background-color: var(--color-pillar-bg);
-  border: 1px solid var(--color-pillar-border);
+  border: var(--border-width-sm) solid var(--color-pillar-border);
 }
 
 .legend-color.staircase {
@@ -375,169 +351,79 @@ footer {
   text-align: center;
   margin-top: var(--spacing-header-bottom);
   color: var(--color-footer-text);
-  font-size: 0.9rem;
-}
-
-/* Salesforce integration styles */
-
-/* Salesforce info section */
-.salesforce-info {
-  margin-top: 30px;
-  padding: 20px;
-  background-color: var(--color-legend-bg);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-}
-
-.salesforce-info h3 {
-  margin-bottom: 15px;
-  color: var(--color-header);
-}
-
-.salesforce-info p {
-  margin-bottom: 15px;
-}
-
-/* Data table styling */
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-}
-
-.data-table th,
-.data-table td {
-  padding: 10px;
-  text-align: left;
-  border: 1px solid #ddd;
-}
-
-.data-table th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-}
-
-.data-table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-/* Seat detail panel styling */
-.seat-detail-panel {
-  background-color: #f9f9f9;
-  border-radius: var(--border-radius);
-  padding: 15px;
-  margin-bottom: 20px;
-  box-shadow: var(--box-shadow);
-}
-
-.seat-detail-panel h3 {
-  margin-bottom: 10px;
-  color: var(--color-header);
+  font-size: var(--font-size-md);
 }
 
 /* Sold seat styling */
 .seat.sold {
   background-color: var(--color-seat-booked-bg);
-  border: 1px solid var(--color-seat-booked-border);
+  border: var(--border-width-sm) solid var(--color-seat-booked-border);
   position: relative;
-}
-
-.seat.sold:hover {
-  background-color: #ffab91;
-}
-
-.seat.sold::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: linear-gradient(
-    45deg,
-    rgba(0, 0, 0, 0.1) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.1) 75%,
-    transparent 75%,
-    transparent
-  );
-  background-size: 10px 10px;
-  pointer-events: none;
 }
 
 /* Active (selected) seat */
 .seat.active,
 .connected-seats.active {
   background-color: var(--color-seat-selected-bg) !important;
-  border: 1px solid var(--color-seat-selected-border) !important;
+  border: var(--border-width-sm) solid var(--color-seat-selected-border) !important;
 }
 
-/* Detail styles for the seat information panel */
+/* Seat Detail Panel - Minimalist shadcn-inspired style */
+.seat-detail-panel {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-base);
+  box-shadow: var(--box-shadow-sm);
+  border: 1px solid var(--color-ui-border-light);
+}
+
+.seat-detail-panel h3 {
+  margin-bottom: var(--spacing-xl);
+  color: var(--color-ui-text-dark);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+}
+
 #seat-detail-content {
-  margin-top: 10px;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .detail-row {
-  margin-bottom: 8px;
   display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-ui-border-light);
+}
+
+.detail-row:last-child {
+  border-bottom: none;
 }
 
 .detail-label {
-  font-weight: bold;
-  width: 120px;
+  padding: var(--spacing-md) 0;
+  color: var(--color-ui-text);
+  font-weight: 500;
+  width: var(--detail-label-width);
 }
 
-.available-badge,
-.sold-badge {
-  display: inline-block;
-  padding: 3px 8px;
-  border-radius: 3px;
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-.available-badge {
-  background-color: #dff0d8;
-  color: #3c763d;
-}
-
-.sold-badge {
-  background-color: #f2dede;
-  color: #a94442;
+.detail-row span:not(.detail-label) {
+  padding: var(--spacing-md) 0;
+  color: var(--color-ui-text-dark);
 }
 
 /* Loading indicator */
 .loading-indicator {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 4px;
+  background-color: var(--color-loading-bg);
+  color: var(--color-white);
+  padding: var(--spacing-lg) var(--spacing-base);
+  border-radius: var(--border-radius);
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   font-weight: bold;
-}
-
-/* Tooltip for showing seat information on hover */
-.seat-tooltip {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 12px;
-  z-index: 100;
-  pointer-events: none;
-  display: none;
-}
-
-/* Show tooltip on hover */
-.seat:hover .seat-tooltip {
-  display: block;
 }
 
 /* Responsive adjustments */
@@ -549,117 +435,36 @@ footer {
 
 /* Responsive adjustments for the seat detail panel */
 @media (max-width: 768px) {
-  .seat-detail-panel {
-    margin-top: 20px;
-  }
-
-  .day-filter-container {
+  .detail-row {
     flex-direction: column;
-    align-items: flex-start;
   }
 
-  .day-filter-container select {
-    width: 100%;
+  .detail-label {
+    padding-bottom: var(--spacing-xs);
+  }
+
+  .detail-row span:not(.detail-label) {
+    padding-top: 0;
+    padding-bottom: var(--spacing-md);
   }
 }
-
-/* Add these styles to your complete CSS file */
 
 /* Filter container and controls */
 .filters-container {
   display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: var(--spacing-base);
+  margin-bottom: var(--spacing-base);
   flex-wrap: wrap;
 }
 
 .filters-container select {
-  padding: 8px 12px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  background-color: white;
-  font-size: 14px;
-  height: 38px;
-  min-width: 200px;
-}
-
-/* Toggle button style for radio buttons - shadcn UI inspired */
-.radio-toggle {
-  display: inline-flex;
-  background-color: hsl(240, 5%, 96%);
-  border-radius: 8px;
-  padding: 4px;
+  padding: 0 var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  border: var(--border-width-sm) solid var(--color-ui-border-light);
+  background-color: var(--color-white);
+  font-size: var(--font-size-px-md);
   height: 40px;
-  align-items: stretch;
-  position: relative;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
-  border: 1px solid hsl(240, 6%, 90%);
-}
-
-.radio-toggle label {
-  flex: 1;
-  text-align: center;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  margin: 0;
-  font-size: 14px;
-  user-select: none;
-  white-space: nowrap;
-  width: 130px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 6px;
-  color: hsl(240, 4%, 46%);
-  position: relative;
-  z-index: 1;
-}
-
-.radio-toggle input[type="radio"] {
-  display: none;
-}
-
-.radio-toggle input[type="radio"]:checked + label {
-  color: hsl(240, 3%, 6%);
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Add hover effect */
-.radio-toggle label:hover {
-  color: hsl(240, 5%, 20%);
-}
-
-/* Improve the event type filter container */
-.event-type-filter-container {
-  display: flex;
-  flex-direction: column;
-  min-width: 200px;
-}
-
-.event-type-filter-container label {
-  font-weight: 600;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: hsl(240, 5%, 26%);
-}
-
-/* Improve the day filter container to match */
-.day-filter-container label {
-  font-weight: 600;
-  font-size: 14px;
-  color: hsl(240, 5%, 26%);
-}
-
-.filters-container select {
-  padding: 0 12px;
-  border-radius: 6px;
-  border: 1px solid hsl(240, 6%, 90%);
-  background-color: white;
-  font-size: 14px;
-  height: 40px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--box-shadow-sm);
   outline: none;
   transition: all 0.15s ease;
   cursor: pointer;
@@ -669,15 +474,55 @@ footer {
   background-position: right 12px center;
   background-size: 16px;
   padding-right: 36px;
+  min-width: 240px;
 }
 
-.day-filter-container select:focus {
-  border-color: hsl(240, 5%, 65%);
-  box-shadow: 0 0 0 2px hsla(240, 5%, 84%, 0.35);
+/* Toggle button style for radio buttons - shadcn UI inspired */
+.radio-toggle {
+  display: inline-flex;
+  background-color: var(--color-ui-bg-light);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-sm);
+  height: 40px;
+  align-items: stretch;
+  position: relative;
+  box-shadow: var(--box-shadow-sm);
+  border: var(--border-width-sm) solid var(--color-ui-border-light);
 }
 
-.day-filter-container select:hover {
-  border-color: hsl(240, 5%, 80%);
+.radio-toggle label {
+  flex: 1;
+  text-align: center;
+  padding: var(--spacing-lg) var(--spacing-base);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin: 0;
+  font-size: var(--font-size-px-md);
+  user-select: none;
+  white-space: nowrap;
+  width: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-md);
+  color: var(--color-ui-text);
+  position: relative;
+  z-index: 1;
+}
+
+.radio-toggle input[type="radio"] {
+  display: none;
+}
+
+.radio-toggle input[type="radio"]:checked + label {
+  color: var(--color-ui-text-dark);
+  background-color: var(--color-white);
+  box-shadow: var(--box-shadow-md);
+}
+
+/* Add hover effect */
+.radio-toggle label:hover {
+  color: var(--color-ui-text-hover);
 }
 
 /* Responsive adjustments */
@@ -685,9 +530,14 @@ footer {
   .filters-container {
     flex-direction: column;
   }
+}
 
-  .day-filter-container,
-  .event-type-filter-container {
-    width: 100%;
-  }
+/* Error message styling */
+.error-message {
+  background-color: var(--color-sold-badge-bg);
+  color: var(--color-sold-badge-text);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-base);
+  font-weight: bold;
 }
